@@ -1,4 +1,4 @@
-name: Pipeline CI/CD
+name: PIPELINE CI/CD
 on:
   push:
     branches: ["main"]
@@ -7,11 +7,11 @@ jobs:
   PIPELINE-CI:
     runs-on: ubuntu-latest
     steps:
-      - name: "Obtendo o código fonte"
+      - name: "Obtendo o código fonte da aplicação"
         uses: actions/checkout@v4
       - name: "Autenticando no Docker Hub"
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          
+
