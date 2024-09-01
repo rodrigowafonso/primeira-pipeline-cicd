@@ -2,16 +2,36 @@ name: PIPELINE CI/CD
 on:
   push:
     branches: ["main"]
+  # Permite o disparo da pipeline manualmente
   workflow_dispatch:
+  # Declaração dos Jobs
 jobs:
+  # Ambiente de CI
   PIPELINE-CI:
+    # Qual o SO será utilizado neste ambiente
     runs-on: ubuntu-latest
+    # Iniciando os Passos da atividade
     steps:
+      # Utilizando a Action Checkout para buscar o código do repositório
       - name: "Obtendo o código fonte da aplicação"
         uses: actions/checkout@v4
+      # Utilizando a Action de Login do Docker para armazenar a nova image no DockerHub
       - name: "Autenticando no Docker Hub"
         uses: docker/login-action@v3
         with:
+          # Utilizando o vault de secredo do GitHub Actions dados sensíveis
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: "Gerando o Build e Push da imagem"
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src
+          file: ./scr/Dockerfile
+          push: true
+          tags: | 
+          rodrigoafonso/aula-primeira-pipeline:v${{ github.run_number }}
+          rodrigoafonso/aula-primeira-pipeline:latest
+
+
 
