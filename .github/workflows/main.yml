@@ -40,16 +40,16 @@ jobs:
       - name: "Obtendo o código do manifesto do Kubernetes"
         uses: actions/checkout@v4
       # Configuração do Kubeconfig - Cluster Kubernetes
+      # Obtendo a configuração do Cluster Kubernetes no Azure com o comando # az aks get-credentials -n kubernetes_devops -g DEVOPS-KUBERNETES
       - name: "Configurando o contexto do Kubernetes no arquivo kubeconfig"
         uses: azure/k8s-set-context@v4
         with:
           method: kubeconfig
-          kubeconfig: ${{ secrets.KUBECONFIG }}
+          kubeconfig: ${{ secrets.CLUSTER_KUBERNETES_KUBECONFIG }}
       - name: "Execução do Manifesto Kubernetes"
         uses: Azure/k8s-deploy@v5
         with:
-          namespace: 'myapp'
           manifests: |
             ./k8s/deployment.yaml
-            images: ${{ secrets.DOCKERHUB_USERNAME }}/devops-first-pipeline:v${{ github.run_number }}
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/devops-first-pipeline:v${{ github.run_number }}
          
