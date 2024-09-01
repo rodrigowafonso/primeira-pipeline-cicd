@@ -1,4 +1,4 @@
-FROM golang:1.22.0-alpine3.19 as builder
+FROM golang:1.22.6-alpine3.19 as builder
 WORKDIR /build 
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o app 
