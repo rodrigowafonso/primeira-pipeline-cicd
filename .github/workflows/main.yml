@@ -24,14 +24,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: "Gerando o Build e Push da imagem"
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v6.7.0
         with:
           context: ./src
           file: ./scr/Dockerfile
           push: true
           tags: |
-            rodrigoafonso/aula-primeira-pipeline:v${{ github.run_number }}
-            rodrigoafonso/aula-primeira-pipeline:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/devops-first-pipeline:v${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/devops-first-pipeline:latest
 
 
 
