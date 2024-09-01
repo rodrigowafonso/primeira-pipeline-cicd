@@ -9,7 +9,7 @@ import (
 func index(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain")
-	fmt.Fprintf(w, "Devops - Rodrigo Afonso - Aplicacao Devops CI/CD em GO " ${{ github.run_number }})
+	fmt.Fprintf(w, "Devops - Rodrigo Afonso - Aplicacao Devops CI/CD em GO v13")
 }
 
 func main() {
