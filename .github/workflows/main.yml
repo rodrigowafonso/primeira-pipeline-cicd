@@ -29,9 +29,9 @@ jobs:
           context: ./src
           file: ./scr/Dockerfile
           push: true
-          tags: | 
-          rodrigoafonso/aula-primeira-pipeline:v${{ github.run_number }}
-          rodrigoafonso/aula-primeira-pipeline:latest
+          tags: |
+            rodrigoafonso/aula-primeira-pipeline:v${{ github.run_number }}
+            rodrigoafonso/aula-primeira-pipeline:latest
 
 
 
